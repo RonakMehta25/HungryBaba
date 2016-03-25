@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.ronak.hungrybaba.FoodQuantity"
+    tools:showIn="@layout/activity_food_quantity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:textSize="30sp"
+        android:id="@+id/FoodName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:onClick="itemClicked"
+        android:background="@drawable/plusgradient"
+        android:textColor="@color/white"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textSize="40sp"
+        android:id="@+id/minus"
+        android:layout_below="@+id/FoodName"
+        android:layout_marginTop="99dp"
+        android:layout_toStartOf="@+id/view"
+        android:layout_toLeftOf="@+id/view" />
+
+    <Button
+        android:onClick="itemClicked"
+        android:background="@drawable/minusgradient"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/plus"
+        android:layout_alignTop="@+id/minus"
+        android:layout_toRightOf="@+id/view"
+        android:layout_toEndOf="@+id/view" />
+    <View
+        android:layout_height="2dp"
+        android:background="@color/green"
+        android:layout_width="150dp"
+        android:layout_alignBottom="@+id/minus"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/view" />
+
+    <Button
+        android:textColor="@color/white"
+        android:background="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Add To Cart"
+        android:id="@+id/add"
+        android:onClick="cartClicked"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Quantity 1"
+        android:id="@+id/quant"
+        android:textSize="23sp"
+        android:layout_alignBottom="@+id/view"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total"
+        android:id="@+id/totalButton"
+        android:layout_above="@+id/add"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Price"
+        android:id="@+id/price"
+        android:layout_alignTop="@+id/totalButton"
+        android:layout_alignRight="@+id/add"
+        android:layout_alignEnd="@+id/add" />
+
+    <RelativeLayout
+        android:id="@+id/FoodQuantity"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_alignTop="@+id/price"
+        android:layout_above="@+id/add"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/quant"
+        android:layout_toEndOf="@+id/quant"></RelativeLayout>
+
+</RelativeLayout>

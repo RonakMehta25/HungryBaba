@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ronak.hungrybaba">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-library android:name="com.google.android.maps" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/app_id" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RestaurantDetails"
+            android:label="@string/title_activity_restaurant_details"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.RestaurantDetails" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FoodDetails"
+            android:label="@string/title_activity_food_details"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.FoodDetails" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FoodQuantity"
+            android:label="@string/title_activity_food_quantity"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.FoodQuantity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".bill"
+            android:label="@string/title_activity_bill"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.bill" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".GoogleMapes"
+            android:label="@string/title_activity_google_mapes"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name=".Info"
+            android:label="@string/title_activity_info"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.Info" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Final"
+            android:label="@string/title_activity_final"
+            android:theme="@style/Theme.AppCompat.Light">
+            <intent-filter>
+                <action android:name="com.example.ronak.hungrybaba.Final" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
