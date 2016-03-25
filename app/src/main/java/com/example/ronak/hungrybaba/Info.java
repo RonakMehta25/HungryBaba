@@ -1,6 +1,7 @@
 package com.example.ronak.hungrybaba;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,8 +95,11 @@ public class Info extends AppCompatActivity {
         String Mno=mno.getText().toString();
         EditText address=(EditText)findViewById(R.id.address);
         String Address=address.getText().toString();
-        //String furl="http://www.hungrybaba.esy.es/foodfetchname.php?hid="+hid+"&type='"+type+"'";
-        //new registerfood().execute(furl);
+        Gson gson = new Gson();
+        SharedPreferences mPrefs = getSharedPreferences("orders", MODE_PRIVATE);
+        String hname = mPrefs.getString("hotels", "");
+        String furl="hungrybaba.esy.es/registerorder.php?hname="+hname+"&pname="+Name+"&email="+Email+"&phone="+Mno+"&address="+Address+"&food='pasta'";
+        new registerfood().execute(furl);
     }
 
 
