@@ -48,6 +48,7 @@ public class Info extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(String... params) {
+            InputStream inputStream = null;
             HttpURLConnection urlConnection = null;
             Integer result = 0;
             try {
@@ -67,10 +68,13 @@ public class Info extends AppCompatActivity {
 
                 /* 200 represents HTTP OK */
                 if (statusCode ==  200) {
-
-
+                    Log.d("result","success");
+                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                    String response = convertInputStreamToString(inputStream);
+                    Log.d("rec","recieved="+response);
                     result = 1; // Successful
                 }else{
+                    Log.d("result","failure");
                     result = 0; //"Failed to fetch data!";
                 }
             } catch (Exception e) {
@@ -85,6 +89,20 @@ public class Info extends AppCompatActivity {
             startActivity(intent);
         }
     }
+    private String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+        }
+
+            /* Close Stream */
+        if(null!=inputStream){
+            inputStream.close();
+        }
+        return result;
+    }
     public void register(View v)
     {
         EditText name=(EditText)findViewById(R.id.name);
@@ -95,10 +113,10 @@ public class Info extends AppCompatActivity {
         String Mno=mno.getText().toString();
         EditText address=(EditText)findViewById(R.id.address);
         String Address=address.getText().toString();
-        Gson gson = new Gson();
-        SharedPreferences mPrefs = getSharedPreferences("orders", MODE_PRIVATE);
-        String hname = mPrefs.getString("hotels", "");
-        String furl="hungrybaba.esy.es/registerorder.php?hname="+hname+"&pname="+Name+"&email="+Email+"&phone="+Mno+"&address="+Address+"&food='pasta'";
+       // Gson gson = new Gson();
+        SharedPreferences mPrefs = getSharedPreferences("hotels", MODE_PRIVATE);
+        String hname = mPrefs.getString("hotel", "");
+        String furl="http://www.hungrybaba.esy.es/registerorder.php?hname='"+hname+"'&pname='"+Name+"'&email='"+Email+"'&phone='"+Mno+"'&address='"+Address+"'&food='pasta'";
         new registerfood().execute(furl);
     }
 

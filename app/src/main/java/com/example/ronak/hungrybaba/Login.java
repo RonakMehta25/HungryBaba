@@ -40,15 +40,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
         private ProfileTracker mProfileTracker;
         @Override
         public void onSuccess(LoginResult loginResult) {
-            Intent intent=new Intent("com.example.ronak.hungrybaba.MainActivity");
+
 
              AccessToken access=loginResult.getAccessToken();
              Profile profile=Profile.getCurrentProfile();
-            intent.putExtra("userId", profile.getId());
-            startActivity(intent);
+
            // TextView name = (TextView) findViewById(R.id.displayName);
               if(profile!=null) {
-
+                  Intent intent=new Intent("com.example.ronak.hungrybaba.MainActivity");
+                  intent.putExtra("userId", profile.getId());
+                  startActivity(intent);
                 //  name.setText("Hello"+profile.getName());
               }
             else
@@ -59,6 +60,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
                       protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
                           //TextView name = (TextView) findViewById(R.id.displayName);
                           //name.setText("Hello"+profile2.getName());
+                          Intent intent=new Intent("com.example.ronak.hungrybaba.MainActivity");
+                          intent.putExtra("userId", profile2.getId());
+                          startActivity(intent);
                           mProfileTracker.stopTracking();
                       }
                   };
@@ -118,12 +122,35 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Go
 
     private void isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if(accessToken!=null)
+       /* if(accessToken!=null)
         {
             Intent intent=new Intent("com.example.ronak.hungrybaba.MainActivity");
             intent.putExtra("userId", Profile.getCurrentProfile().getId());
 
             startActivity(intent);
+        }*/
+        if(accessToken!=null) {
+            Profile profile = Profile.getCurrentProfile();
+            if (profile != null) {
+                Intent intent = new Intent("com.example.ronak.hungrybaba.MainActivity");
+                intent.putExtra("userId", profile.getId());
+                startActivity(intent);
+                //  name.setText("Hello"+profile.getName());
+            } else {
+
+                ProfileTracker mProfileTracker = new ProfileTracker() {
+                    @Override
+                    protected void onCurrentProfileChanged(Profile profile, Profile profile2) {
+                        //TextView name = (TextView) findViewById(R.id.displayName);
+                        //name.setText("Hello"+profile2.getName());
+                        Intent intent = new Intent("com.example.ronak.hungrybaba.MainActivity");
+                        intent.putExtra("userId", profile2.getId());
+                        startActivity(intent);
+                        //mProfileTracker.stopTracking();
+                    }
+                };
+                //mProfileTracker.startTracking();
+            }
         }
     }
 

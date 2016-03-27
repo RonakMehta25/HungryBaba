@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -35,6 +36,7 @@ import java.util.List;
 
 public class RestaurantDetails extends AppCompatActivity {
 private  restaurant rest;
+    private ProgressBar spinner;
    private String[] food;
     Resources res;
     private String[] types;
@@ -43,6 +45,7 @@ private  restaurant rest;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
+        spinner = (ProgressBar)findViewById(R.id.progressBar);
         //String name=getIntent().getStringExtra("hotelName");
         rest=(restaurant)getIntent().getSerializableExtra("hotelObject");
         hid=getIntent().getIntExtra("hid",1);
@@ -111,6 +114,7 @@ private  restaurant rest;
         protected void onPostExecute(Integer result) {
             populateList();
             onListViewClick();
+            spinner.setVisibility(View.GONE);
             /* Download complete. Lets update UI */
             /*if(result == 1){
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, blogTitles);

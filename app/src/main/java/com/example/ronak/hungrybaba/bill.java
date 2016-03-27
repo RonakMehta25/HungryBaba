@@ -53,8 +53,7 @@ public class bill extends AppCompatActivity {
 
         public MyListAdapter() {
             super(bill.this, R.layout.foodprice,foods);
-            Intent intent = new Intent("com.example.ronak.hungrybaba.Info");
-            startActivity(intent);
+
         }
 
         @Override

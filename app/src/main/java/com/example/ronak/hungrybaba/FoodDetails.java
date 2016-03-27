@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import java.util.List;
 public class FoodDetails extends AppCompatActivity {
     private  restaurant rest;
     private String type;
+    private ProgressBar spinner;
     private int hid;
     Resources res;
     String[] foodname;
@@ -54,6 +56,7 @@ public class FoodDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_details);
+        spinner = (ProgressBar)findViewById(R.id.progressBar);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
        /* foodSelected.add(new Food("Cream Sauce Pasta", "Pasta", 120, 1));
@@ -122,6 +125,7 @@ public class FoodDetails extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             populateList();
             onListViewClick();
+            spinner.setVisibility(View.GONE);
             /* Download complete. Lets update UI */
             /*if(result == 1){
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, blogTitles);

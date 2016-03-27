@@ -71,6 +71,7 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
     private boolean drawerArrowColor;
     String[] blogTitles;
     String[] ImageList;
+    String[] places;
     Bitmap profPict;
     String userId;
     private int[] hotelid;
@@ -78,6 +79,7 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
     private ProgressBar spinner;
     private List<restaurant> rest=new ArrayList<restaurant>();
     private List<restaurant> rest1=new ArrayList<restaurant>();
+    private Menu placemenu;
     Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,7 +224,12 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
             }*/
 
             spinner.setVisibility(View.GONE);
-
+            int n=places.length;
+            for(int i=0;i<n;i++)
+            {
+                MenuItem item = placemenu.add(Menu.NONE,1,Menu.NONE,places[i]);
+            }
+            //MenuItem item = placemenu.add(Menu.NONE,1,Menu.NONE,R.string.exitOption);
             /*profilePictureView = (ProfilePictureView) findViewById(R.id.profilePic);
             profilePictureView.setProfileId(userId);*/
         }
@@ -277,6 +284,7 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
             blogTitles =new String[posts.length()];
             ImageList=new String[posts.length()];
             hotelid=new int[posts.length()];
+            places=new String[posts.length()];
             for(int i=0; i< posts.length();i++ ){
                 JSONObject post = posts.getJSONObject(i);
                 Log.d("Jsonobject","Jsonobject="+post);
@@ -288,6 +296,7 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
                 //ImageList[i]=removeSlash(istring);
                 ImageList[i]=parseProperly("" + post, "icon");
                 hotelid[i]=Integer.parseInt(parseProperly("" + post, "h_id"));
+                places[i]=parseProperly(""+post,"address");
                 //Log.d("Names","Name="+ImageList[i]);
             }
         }catch (JSONException e){
@@ -418,7 +427,9 @@ public class MainActivity extends  AppCompatActivity implements GoogleApiClient.
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        //MenuItem item = menu.add(Menu.NONE,1,Menu.NONE,R.string.exitOption);
+        placemenu=menu;
         return true;
     }
     @Override
